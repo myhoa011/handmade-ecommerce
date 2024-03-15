@@ -1,9 +1,6 @@
-package com.tmdt.handmade.entity;
+package com.tmdt.handmade.entity.order;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -20,4 +17,5 @@ public class PaymentMethod {
 
     @Column(name = "payment_method_name")
     private String name;
+
 }

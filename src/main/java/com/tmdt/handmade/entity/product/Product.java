@@ -1,4 +1,4 @@
-package com.tmdt.handmade.entity;
+package com.tmdt.handmade.entity.product;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,16 +23,23 @@ public class Product {
     @Column(name = "product_name")
     private String name;
 
+    private String description;
+
     @Column(name = "stock_quantity")
     private int stockQuantity;
 
     private BigDecimal price;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private List<ProductVariant> productVariantList = new ArrayList<>();
 }

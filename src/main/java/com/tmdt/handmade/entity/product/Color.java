@@ -1,4 +1,4 @@
-package com.tmdt.handmade.entity;
+package com.tmdt.handmade.entity.product;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,7 +22,8 @@ public class Color {
     @Column(name = "color_name")
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "color_id")
-    private List<ProductVariant> productVariants = new ArrayList<>();
+
+    @OneToMany(mappedBy = "color",
+            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<ProductVariant> productVariantList = new ArrayList<>();
 }

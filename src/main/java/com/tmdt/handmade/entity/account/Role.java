@@ -1,4 +1,4 @@
-package com.tmdt.handmade.entity;
+package com.tmdt.handmade.entity.account;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,5 +1,8 @@
-package com.tmdt.handmade.entity;
+package com.tmdt.handmade.entity.account;
 
+import com.tmdt.handmade.entity.blog.Blog;
+import com.tmdt.handmade.entity.order.Order;
+import com.tmdt.handmade.entity.product.Product;
 import com.tmdt.handmade.entity.geography.AddressDetail;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,7 +38,7 @@ public class User {
 
     private BigDecimal balance;
 
-    private int status;
+    private boolean status;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
@@ -44,11 +47,19 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<AddressDetail> addressDetails = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "seller_id")
     private List<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "buyer",
+            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",
+    cascade = CascadeType.ALL)
+    private List<Blog> blogList = new ArrayList<>();
 }

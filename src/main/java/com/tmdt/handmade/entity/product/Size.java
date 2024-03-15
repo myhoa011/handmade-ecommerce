@@ -1,7 +1,10 @@
-package com.tmdt.handmade.entity;
+package com.tmdt.handmade.entity.product;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +21,8 @@ public class Size {
 
     @Column(name = "size_name")
     private String name;
+
+    @OneToMany(mappedBy = "size",
+            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<ProductVariant> productVariantList = new ArrayList<>();
 }
