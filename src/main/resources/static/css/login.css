@@ -336,3 +336,11 @@ body {
 #xs-social-login-container .xs-login--style-1 .xs-login__item:hover .xs-login__item--icon .met-social-google, .wslu-color-scheme--google .xs-login__item--label {
     color: #de4032 !important;
 }
+
+.form-check-input:checked {
+    background-color: #913B10;
+    border-color: #913B10;
+}
+.radial-gradient:before {
+    background: radial-gradient(rgb(210, 241, 223), rgb(145 59 16), rgb(132 53 14)) 0% 0% / 400% 400%;
+}

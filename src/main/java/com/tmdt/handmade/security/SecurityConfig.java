@@ -1,6 +1,7 @@
 package com.tmdt.handmade.security;
 
 import com.tmdt.handmade.service.UserService;
+import com.tmdt.handmade.util.EncodePassword;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -11,17 +12,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
     //bcrypt bean definition
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 
     //authenticationProvider bean definition
     @Bean
     public DaoAuthenticationProvider authenticationProvider(UserService userService) {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService); //set the custom user details service
-        auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
+        auth.setPasswordEncoder(EncodePassword.passwordEncoder()); //set the password encoder - bcrypt
         return auth;
     }
 
@@ -30,12 +28,15 @@ public class SecurityConfig {
         http.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers("/css/**").permitAll()
+                                .requestMatchers("/signup/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->
                         form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
+                                .usernameParameter("email")
+                                .defaultSuccessUrl("/home", true)
                                 .permitAll()
                 )
                 .logout(logout -> logout.permitAll()
