@@ -1,0 +1,86 @@
+.header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header{
+    background-color: #913B10;
+}
+.input-group{
+    align-items: center;
+    justify-content: space-between;
+}
+.form-control{
+    background-color: rgba(255, 255, 255, 0);
+}
+.form-control::placeholder{
+    color: white;
+}
+.box-search{
+    flex: 1;
+}
+
+.header-secondary-links{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.header-icon-list{
+    display: flex;
+    align-items: center;
+}
+.search{
+    width: 50%;
+}
+.inpit-group-text{
+    margin-right: 10px;
+}
+.header-icon{
+    padding: 12px;
+    text-decoration: none;
+    color: white !important;
+}
+span{
+    color: white;
+}
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgb(148 60 60 / 90%);
+}
+.navbar{
+    box-shadow: none;
+}
+.navbar-collapse{
+    justify-content: center;
+}
+.nav-link{
+    color: white;
+    font-weight: bold;
+}
+.footer{
+    background-color: #778C7E;
+}
+.text-reset{
+    text-decoration: none;
+    color: #fff !important;
+}
+
+a.text-reset:hover{
+    color: black !important;
+}
+
+.footer-title{
+    color: white;
+    font-size: 1.2rem;
+}
+
+.about-page{
+    font-weight: 400;
+    padding-top: 1rem;
+    text-align: center;
+}
+.member-signature{
+    margin-right: 8px;
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #778C7E;
+}

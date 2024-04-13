@@ -3,6 +3,7 @@ package com.tmdt.handmade.service.impl;
 import com.tmdt.handmade.dto.account.UserDTO;
 import com.tmdt.handmade.entity.account.User;
 import com.tmdt.handmade.repository.UserRepository;
+import com.tmdt.handmade.security.CustomUserDetails;
 import com.tmdt.handmade.security.SecurityConfig;
 import com.tmdt.handmade.service.UserService;
 import com.tmdt.handmade.security.SecurityConfig;
@@ -57,10 +58,10 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid email or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+        return new CustomUserDetails(user.getEmail(), user.getPassword(),
                 user.getRoles().stream()
                         .map((role) -> new SimpleGrantedAuthority(role.getName()))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()), user.getFullName());
     }
 
 }
